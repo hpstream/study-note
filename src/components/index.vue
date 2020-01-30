@@ -13,6 +13,8 @@
         <button @click="clickbtn">提交</button>
       </h-formitem>
     </h-form>
+    <h1>递归组件</h1>
+    <tree />
   </div>
 </template>
 
@@ -20,8 +22,11 @@
 import hForm from "./form";
 import hFormitem from "./formitem";
 import hInput from "./input";
+import create from "./../uitils/create.js";
+import notice from "./notice";
+import tree from "@/components/tree/index";
 export default {
-  components: { hForm, hInput, hFormitem },
+  components: { hForm, hInput, hFormitem, tree },
   data() {
     return {
       value: "",
@@ -46,6 +51,9 @@ export default {
       this.value = e.target.value;
     },
     clickbtn() {
+      create(notice, {
+        msg: "我是测试"
+      }).show();
       this.$refs["form"].validate(res => {
         console.log("------------------------------------");
         console.log(res);
